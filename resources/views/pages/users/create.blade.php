@@ -80,7 +80,7 @@
                                 <label>Phone</label>
                                 <input type="number" class="form-control" name="phone">
                             </div>
-                            {{-- <div class="form-group">
+                            <div class="form-group">
                                 <label>Type of Employee</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
@@ -110,7 +110,7 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div> --}}
+                            </div>
                             <div class="form-group">
                                 <label class="form-label">Roles</label>
                                 <div class="selectgroup w-100">

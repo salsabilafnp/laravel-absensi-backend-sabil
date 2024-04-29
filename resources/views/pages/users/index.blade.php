@@ -51,18 +51,14 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
-                                            {{-- <th>Type of Employee</th>
-                                            <th>Department</th> --}}
-                                            <th>Created At</th>
-                                            <th>Action</th>
+                                            <th>Role</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                         @foreach ($users as $user)
                                             <tr>
-
                                                 <td>{{ $user->name }}
                                                 </td>
                                                 <td>
@@ -71,11 +67,9 @@
                                                 <td>
                                                     {{ $user->phone }}
                                                 </td>
-                                                {{-- <td>
-                                                    {{ $user->employeeType }}
+                                                <td class="text-capitalize">
+                                                    {{ $user->role }}
                                                 </td>
-                                                <td>{{ $user->department }}</td> --}}
-                                                <td>{{ $user->created_at}}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href='{{ route('users.edit', $user->id) }}'
@@ -97,8 +91,6 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-
-
                                     </table>
                                 </div>
                                 <div class="float-right">

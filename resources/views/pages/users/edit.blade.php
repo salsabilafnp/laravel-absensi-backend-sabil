@@ -81,20 +81,19 @@
                                 <label>Phone</label>
                                 <input type="number" class="form-control" name="phone" value="{{ $user->phone }}">
                             </div>
-                            {{-- <div class="form-group">
+                            <div class="form-group">
                                 <label>Type of Employee</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="employeeType" value="internship" class="selectgroup-input"
-                                            checked="">
+                                        <input type="radio" name="employeeType" value="internship" class="selectgroup-input" @if ($user->employeeType == 'internship') checked @endif>
                                         <span class="selectgroup-button">Internship</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="employeeType" value="full time" class="selectgroup-input">
+                                        <input type="radio" name="employeeType" value="full time" class="selectgroup-input" @if ($user->employeeType == 'full time') checked @endif>
                                         <span class="selectgroup-button">Full Time</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="employeeType" value="freelance" class="selectgroup-input">
+                                        <input type="radio" name="employeeType" value="freelance" class="selectgroup-input" @if ($user->employeeType == 'freelance') checked @endif>
                                         <span class="selectgroup-button">Freelance</span>
                                     </label>
                                 </div>
@@ -106,12 +105,12 @@
                                 is-invalid
                             @enderror"
                                     name="department" value="{{ $user->department }}">
-                                @error('departement')
+                                @error('department')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div> --}}
+                            </div>
                             <div class="form-group">
                                 <label class="form-label">Roles</label>
                                 <div class="selectgroup w-100">

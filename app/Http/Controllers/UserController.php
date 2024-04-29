@@ -24,7 +24,7 @@ class UserController extends Controller
     public function store(Request $request) {
         $request->validate([
             'name'  => ['required'],
-            'email' => ['required', 'email' , 'unique:users', 'email'],
+            'email' => ['required', 'email'],
             'password'=> ['required', 'min:8'],
         ]);
         
@@ -33,8 +33,8 @@ class UserController extends Controller
             'email'=> $request->email,
             'phone'=> $request->phone,
             'role'=> $request->role,
-            // 'employeeType'=> $request->employeeType,
-            // 'department'=> $request->department,
+            'employeeType'=> $request->employeeType,
+            'department'=> $request->department,
             'password'=> Hash::make($request->password),
         ]);
         
@@ -56,8 +56,8 @@ class UserController extends Controller
             'email'=> $request->email,
             'phone'=> $request->phone,
             'role'=> $request->role,
-            // 'employeeType'=> $request->employeeType,
-            // 'department'=> $request->department,
+            'employeeType'=> $request->employeeType,
+            'department'=> $request->department,
         ]);
 
         if ($request->password) {
