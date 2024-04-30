@@ -21,5 +21,17 @@ class DatabaseSeeder extends Seeder
             'email' => 'sabil@gmail.com',
             'password' => Hash::make('secret'),
         ]);
+
+        // Dummy data for company
+        \App\Models\Company::create([
+            'name' => 'PT. Sabil',
+            'email' => 'info@sabilsolution.id',
+            'address' => 'Jl. Raya Ciputat Parung No. 1',
+            'latitude' => '-6.3011',
+            'longitude' => '106.7347',
+            'radius_km' => '1',
+            'time_in' => '08:00',
+            'time_out' => '17:00',
+        ]);
     }
 }

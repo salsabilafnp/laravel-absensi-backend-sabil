@@ -13,6 +13,22 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
+            // company_name
+            $table->string('name');
+            // company_email
+            $table->string('email');
+            // address
+            $table->string('address');
+            // latitude
+            $table->string('latitude');
+            // longitude
+            $table->string('longitude');
+            // radius_km
+            $table->string('radius_km');
+            // time_in
+            $table->string('time_in');
+            // time_out
+            $table->string('time_out');
             $table->timestamps();
         });
     }
