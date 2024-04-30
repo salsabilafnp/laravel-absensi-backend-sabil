@@ -35,6 +35,7 @@ class UserController extends Controller
             'role'=> $request->role,
             'employeeType'=> $request->employeeType,
             'department'=> $request->department,
+            'position'=> $request->position,
             'password'=> Hash::make($request->password),
         ]);
         
@@ -58,6 +59,7 @@ class UserController extends Controller
             'role'=> $request->role,
             'employeeType'=> $request->employeeType,
             'department'=> $request->department,
+            'position'=> $request->position,
         ]);
 
         if ($request->password) {
