@@ -1,26 +1,28 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <a href="{{ route('home')}}">ePresence</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="{{ route('home')}}">eP</a>
         </div>
         <ul class="sidebar-menu">
             <li class="nav-item">
                 <a href="{{ route('home')}}" class="nav-link">
-                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-solid fa-desktop"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="nav-item ">
-                <a href="{{ route('users.index') }}"class="nav-link">
-                    <i class="fas fa-columns"></i><span>Users</span>
+                <a href="{{ route('users.index') }}" class="nav-link">
+                    <i class="fas fa-solid fa-users"></i>
+                    <span>Users</span>
                 </a>
             </li>
             <li class="nav-item ">
-                <a href="{{ route('companies.index') }}"class="nav-link">
-                    <i class="fas fa-columns"></i><span>Companies</span>
+                <a href="{{ route('companies.index') }}" class="nav-link">
+                    <i class="fas fa-solid fa-building"></i>
+                    <span>Companies</span>
                 </a>
             </li>
         </ul>
