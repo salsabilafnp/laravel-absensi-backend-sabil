@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CompanyController;
+use App\Http\Controllers\Api\NoteController;
+use App\Http\Controllers\Api\PermissionController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -28,3 +30,9 @@ Route::post('/attendance/check-in', [AttendanceController::class, 'checkIn'])->m
 Route::post('/attendance/check-out', [AttendanceController::class, 'checkOut'])->middleware('auth:sanctum');
 // checked in
 Route::get('/attendance/is-checkedIn', [AttendanceController::class, 'isCheckedIn'])->middleware('auth:sanctum');
+
+// permissions
+Route::apiResource('/permission', PermissionController::class)->middleware('auth:sanctum');
+
+// notes
+Route::apiResource('/note', NoteController::class)->middleware('auth:sanctum');

@@ -19,4 +19,9 @@ class Company extends Model
         'time_in',
         'time_out',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

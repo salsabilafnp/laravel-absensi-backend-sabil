@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'company_id',
+        // 'company_id',
         'phone',
         'role',
         'employeeType',
@@ -55,7 +55,12 @@ class User extends Authenticatable
     }
 
     public function company()
-{
-    return $this->belongsTo(Company::class);
-}
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

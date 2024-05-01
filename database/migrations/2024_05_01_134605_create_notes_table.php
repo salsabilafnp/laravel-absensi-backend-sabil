@@ -11,20 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            // user_id
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            // date
-            $table->date('date');
-            // time in
-            $table->time('time_in');
-            // time out
-            $table->time('time_out')->nullable();
-            // latlon_in
-            $table->string('latlon_in');
-            // latlon_out
-            $table->string('latlon_out')->nullable();
+            $table->string('title');
+            $table->text('note');
             $table->timestamps();
         });
     }
@@ -34,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('notes');
     }
 };

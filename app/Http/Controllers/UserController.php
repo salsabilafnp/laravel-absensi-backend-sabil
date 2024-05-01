@@ -26,7 +26,7 @@ class UserController extends Controller
             'name'  => ['required'],
             'email' => ['required', 'email'],
             'password'=> ['required', 'min:8'],
-            'company_id' => ['required', 'exists:companies,id'],
+            // 'company_id' => ['required', 'exists:companies,id'],
         ]);
         
         $user= User::create([
@@ -38,7 +38,7 @@ class UserController extends Controller
             'department'=> $request->department,
             'position'=> $request->position,
             'password'=> Hash::make($request->password),
-            'company_id' => $request->company_id,
+            // 'company_id' => $request->company_id,
         ]);
         
         return redirect()->route('users.index')->with('success', 'User created successfully');
@@ -52,7 +52,7 @@ class UserController extends Controller
         $request->validate([
             'name'  => ['required'],
             'email' => ['required', 'email'],
-            'company_id' => ['required', 'exists:companies,id'],
+            // 'company_id' => ['required', 'exists:companies,id'],
         ]);
         
         $user->update([
@@ -63,7 +63,7 @@ class UserController extends Controller
             'employeeType'=> $request->employeeType,
             'department'=> $request->department,
             'position'=> $request->position,
-            'company_id' => $request->company_id,
+            // 'company_id' => $request->company_id,
         ]);
 
         if ($request->password) {

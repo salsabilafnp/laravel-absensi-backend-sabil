@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         // dummy data for attendances table
         $this->call([
             AttendanceSeeder::class,
+            PermissionSeeder::class,
         ]);
     }
 }

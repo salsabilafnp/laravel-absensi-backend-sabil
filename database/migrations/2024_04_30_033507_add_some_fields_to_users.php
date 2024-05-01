@@ -12,14 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            // company_id
-            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             // phone
             $table->string('phone')->nullable();
             // role
-            $table->string('role')->default('staff');
+            $table->enum('role', ['staff', 'supervisor', 'admin'])->default('staff');
             // employeeType
-            $table->string('employeeType')->default('full time');
+            $table->enum('employeeType', ['full time', 'internship', 'freelance'])->default('full time');
             // department
             $table->string('department')->nullable();
             // position
@@ -28,6 +26,8 @@ return new class extends Migration
             $table->text('face_embedding')->nullable();
             // image_url
             $table->string('image_url')->nullable();
+            // // company_id
+            // $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
         });
     }
 
