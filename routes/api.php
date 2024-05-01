@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AttendanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
@@ -11,16 +12,19 @@ Route::get('/user', function (Request $request) {
 
 // login
 Route::post('/login', [AuthController::class, 'login']);
-
 // logout
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+// update profile
+Route::post('/update-profile', [AuthController::class, 'updateProfile'])->middleware('auth:sanctum');
 
 // companies
 // index
 Route::get('/company', [CompanyController::class, 'index'])->middleware('auth:sanctum');
-// create
-Route::post('/company/create', [CompanyController::class, 'store'])->middleware('auth:sanctum');
-// update
-Route::put('/company/{id}', [CompanyController::class, 'update'])->middleware('auth:sanctum');
-// destroy
-Route::delete('/company/{id}', [CompanyController::class, 'destroy'])->middleware('auth:sanctum');
+
+// attendances
+// check in
+Route::post('/attendance/check-in', [AttendanceController::class, 'checkIn'])->middleware('auth:sanctum');
+// check out
+Route::post('/attendance/check-out', [AttendanceController::class, 'checkOut'])->middleware('auth:sanctum');
+// checked in
+Route::get('/attendance/is-checkedIn', [AttendanceController::class, 'isCheckedIn'])->middleware('auth:sanctum');
