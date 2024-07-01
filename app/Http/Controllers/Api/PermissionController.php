@@ -17,7 +17,7 @@ class PermissionController extends Controller
             ->take(14)
             ->get();
 
-        if($permissions->isEmpty()){
+        if ($permissions->isEmpty()) {
             return response()->json(['message' => 'No records'], 404);
         }
 
@@ -29,7 +29,7 @@ class PermissionController extends Controller
     {
         $permissions = Permission::all();
 
-        if($permissions->isEmpty()){
+        if ($permissions->isEmpty()) {
             return response()->json(['message' => 'No records'], 404);
         }
 
@@ -65,14 +65,14 @@ class PermissionController extends Controller
         return response()->json(['message' => 'Permission created successfully'], 201);
     }
 
-    // update (update API) -- masih error
+    // update (update API)
     public function update(Request $request, $id)
     {
         $request->validate([
-            'permit_type' => 'required',
-            'leave_date' => 'required',
-            'duration' => 'required',
-            'reason' => 'required',
+            'permit_type' => 'required|in:annual,sick,wfh',
+            'leave_date' => 'required|date',
+            'duration' => 'required|integer',
+            'reason' => 'required|string',
         ]);
 
         $permission = Permission::find($id);
@@ -123,7 +123,7 @@ class PermissionController extends Controller
         return response()->json(['permission' => $permission], 200);
     }
 
-    // confirm (update status API) -- masih error
+    // confirm (update status API)
     public function confirm(Request $request, $id)
     {
         Log::info('Confirm method called for permission id: ' . $id);
@@ -142,7 +142,7 @@ class PermissionController extends Controller
         return response()->json($permissions, 201);
     }
 
-    // filter (filter API) -- masih error
+    // filter (filter API)
     public function filter(Request $request)
     {
         $query = Permission::query();
