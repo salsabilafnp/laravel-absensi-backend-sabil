@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\NoteController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\RecapController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -42,6 +43,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('permission/filter', [PermissionController::class, 'filter']);
     Route::apiResource('/permission', PermissionController::class);
 });
+
+// Recap
+Route::get('/recap/staff', [RecapController::class, 'staffRecap'])->middleware('auth:sanctum');
+Route::get('/recap/admin', [RecapController::class, 'adminRecap'])->middleware('auth:sanctum');
 
 // notes
 Route::apiResource('/note', NoteController::class)->middleware('auth:sanctum');
