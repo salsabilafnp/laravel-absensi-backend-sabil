@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\AttendanceController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\NoteController;
+use App\Http\Controllers\Api\CompanyController;
+use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\Api\PermissionController;
 
 Route::get('/user', function (Request $request) {
@@ -24,15 +25,24 @@ Route::post('/update-profile', [AuthController::class, 'updateProfile'])->middle
 Route::get('/company', [CompanyController::class, 'index'])->middleware('auth:sanctum');
 
 // attendances
-// check in
-Route::post('/attendance/check-in', [AttendanceController::class, 'checkIn'])->middleware('auth:sanctum');
-// check out
-Route::post('/attendance/check-out', [AttendanceController::class, 'checkOut'])->middleware('auth:sanctum');
-// checked in
-Route::get('/attendance/is-checkedIn', [AttendanceController::class, 'isCheckedIn'])->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/attendance/history', [AttendanceController::class, 'history']);
+    Route::get('/attendance/all-history', [AttendanceController::class, 'allHistory']);
+    Route::get('attendance/today', [AttendanceController::class, 'today']);
+    Route::post('attendance/filter', [AttendanceController::class, 'filter']);
+    Route::post('attendance/check-in', [AttendanceController::class, 'checkIn']);
+    Route::post('attendance/check-out', [AttendanceController::class, 'checkOut']);
+    Route::get('attendance/{id}', [AttendanceController::class, 'show']);
+});
 
 // permissions
-Route::apiResource('/permission', PermissionController::class)->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->group(function () {
+    // Route::get('permission/history', [PermissionController::class, 'history']);
+    // Route::get('permission/all-history', [PermissionController::class, 'allHistory']);
+    // Route::post('permission/confirm/{id}', [PermissionController::class, 'confirm']);
+    // Route::post('permission/filter', [PermissionController::class, 'filter']);
+    Route::apiResource('/permission', PermissionController::class);
+});
 
 // notes
 Route::apiResource('/note', NoteController::class)->middleware('auth:sanctum');
