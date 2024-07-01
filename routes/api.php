@@ -37,10 +37,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // permissions
 Route::middleware('auth:sanctum')->group(function () {
-    // Route::get('permission/history', [PermissionController::class, 'history']);
-    // Route::get('permission/all-history', [PermissionController::class, 'allHistory']);
-    // Route::post('permission/confirm/{id}', [PermissionController::class, 'confirm']);
-    // Route::post('permission/filter', [PermissionController::class, 'filter']);
+    Route::get('permission/all-history', [PermissionController::class, 'allHistory']);
+    Route::post('permission/confirm/{id}', [PermissionController::class, 'confirm']);
+    Route::post('permission/filter', [PermissionController::class, 'filter']);
     Route::apiResource('/permission', PermissionController::class);
 });
 

@@ -23,7 +23,7 @@ return new class extends Migration
             // position
             $table->string('position')->nullable();
             // face_embedding
-            $table->text('face_embedding')->nullable();
+            $table->longText('face_embedding')->nullable();
             // image_url
             $table->string('image_url')->nullable();
             // // company_id

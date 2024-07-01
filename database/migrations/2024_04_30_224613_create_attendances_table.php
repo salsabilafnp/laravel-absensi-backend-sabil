@@ -22,9 +22,9 @@ return new class extends Migration
             // time out
             $table->time('checkOut_time')->nullable();
             // latlon_in
-            $table->string('latlon_in');
+            $table->longText('latlon_in');
             // latlon_out
-            $table->string('latlon_out')->nullable();
+            $table->longText('latlon_out')->nullable();
             $table->timestamps();
         });
     }
