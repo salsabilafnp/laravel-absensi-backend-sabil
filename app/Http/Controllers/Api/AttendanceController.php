@@ -19,7 +19,7 @@ class AttendanceController extends Controller
         $attendance = new Attendance;
         $attendance->user_id = auth()->user()->id;
         $attendance->date = date('Y-m-d');
-        $attendance->time_in = date('H:i:s');
+        $attendance->checkIn_time = date('H:i:s');
         $attendance->latlon_in = $request->latitude . "," . $request->longitude;
         $attendance->save();
 
@@ -45,12 +45,12 @@ class AttendanceController extends Controller
             return response([
                 'message' => 'You have not checked in yet',
             ], 400);
-        } else if ($attendance->time_out) {
+        } else if ($attendance->checkOut_time) {
             return response([
                 'message' => 'You have checked out',
             ], 400);
         } else {
-            $attendance->time_out = date('H:i:s');
+            $attendance->checkOut_time = date('H:i:s');
             $attendance->latlon_out = $request->latitude . "," . $request->longitude;
             $attendance->save();
 

@@ -78,23 +78,19 @@
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input type="number" class="form-control" name="phone">
+                                <input type="text" class="form-control" name="phone_number">
                             </div>
                             <div class="form-group">
                                 <label>Type of Employee</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="employeeType" value="internship" class="selectgroup-input"
+                                        <input type="radio" name="employee_type" value="internship" class="selectgroup-input"
                                             checked="">
                                         <span class="selectgroup-button">Internship</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="employeeType" value="full time" class="selectgroup-input">
+                                        <input type="radio" name="employee_type" value="full time" class="selectgroup-input">
                                         <span class="selectgroup-button">Full Time</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="employeeType" value="freelance" class="selectgroup-input">
-                                        <span class="selectgroup-button">Freelance</span>
                                     </label>
                                 </div>
                             </div>
@@ -131,10 +127,6 @@
                                         <input type="radio" name="role" value="admin" class="selectgroup-input"
                                             checked="">
                                         <span class="selectgroup-button">Admin</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="role" value="supervisor" class="selectgroup-input">
-                                        <span class="selectgroup-button">Supervisor</span>
                                     </label>
                                     <label class="selectgroup-item">
                                         <input type="radio" name="role" value="staff" class="selectgroup-input">

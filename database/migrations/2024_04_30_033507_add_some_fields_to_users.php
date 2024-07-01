@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             // phone
-            $table->string('phone')->nullable();
+            $table->string('phone_number')->nullable();
             // role
-            $table->enum('role', ['staff', 'supervisor', 'admin'])->default('staff');
-            // employeeType
-            $table->enum('employeeType', ['full time', 'internship', 'freelance'])->default('full time');
+            $table->enum('role', ['staff', 'admin'])->default('staff');
+            // employee_type
+            $table->enum('employee_type', ['full time', 'internship'])->default('full time');
             // department
             $table->string('department')->nullable();
             // position

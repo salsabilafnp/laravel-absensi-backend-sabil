@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="form-group col-md-6 col-12">
                                         <label>Phone Number</label>
-                                        <p>{{ $permission->user->phone }}</p>
+                                        <p>{{ $permission->user->phone_number }}</p>
                                     </div>
 
                                 </div>
@@ -46,13 +46,13 @@
                                     </div>
                                     <div class="form-group col-md-6 col-12">
                                         <label>Permission Type</label>
-                                        <p class="text-capitalize">{{ $permission->type }}</p>
+                                        <p class="text-uppercase">{{ $permission->permit_type }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6 col-12">
                                         <label>Date Permission</label>
-                                        <p>{{ $permission->start_date }} - {{ $permission->end_date}}</p>
+                                        <p>{{ $permission->leave_date }} for {{ $permission->duration}} day(s) </p>
                                     </div>
                                     <div class="form-group col-md-6 col-12">
                                         <label>Reason</label>
@@ -62,14 +62,14 @@
                                 <div class="row">
                                     <div class="form-group col-md-6 col-12">
                                         <label>Supporting Document</label>
-                                        @if ($permission->image)
-                                            <!-- Jika image tersedia, tampilkan gambar -->
+                                        @if ($permission->file_url)
+                                            <!-- Jika file_url tersedia, tampilkan gambar -->
                                             <div>
-                                                <img src="{{ asset('storage/permissions/' . $permission->image) }}"
+                                                <img src="{{ asset('storage/permissions/' . $permission->file_url) }}"
                                                     alt="Supporting Document" class="img-thumbnail mb-3" style="max-width: 200px;">
                                             </div>
                                         @else
-                                            <!-- Jika image kosong, tampilkan teks -->
+                                            <!-- Jika file_url kosong, tampilkan teks -->
                                             <p>No Document</p>
                                         @endif
                                     </div>

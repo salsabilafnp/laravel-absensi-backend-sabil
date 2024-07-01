@@ -12,24 +12,24 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
+            'permit_type' => 'required',
+            'leave_date' => 'required',
+            'duration' => 'required',
             'reason' => 'required',
         ]);
 
         $permission = new Permission();
         $permission->user_id = auth()->user()->id;
-        $permission->type = $request->type;
-        $permission->start_date = $request->start_date;
-        $permission->end_date = $request->end_date;
+        $permission->permit_type = $request->permit_type;
+        $permission->leave_date = $request->leave_date;
+        $permission->duration = $request->duration;
         $permission->reason = $request->reason;
         $permission->status = 'pending';
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $image->storeAs('public/permissions', $image->hashName());
-            $permission->image = $image->hashName();
+        if ($request->hasFile('file_url')) {
+            $file_url = $request->file('file_url');
+            $file_url->storeAs('public/permissions', $file_url->hashName());
+            $permission->file_url = $file_url->hashName();
         }
 
         $permission->save();

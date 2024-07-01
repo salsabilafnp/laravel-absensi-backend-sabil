@@ -18,9 +18,9 @@ return new class extends Migration
             // date
             $table->date('date');
             // time in
-            $table->time('time_in');
+            $table->time('checkIn_time');
             // time out
-            $table->time('time_out')->nullable();
+            $table->time('checkOut_time')->nullable();
             // latlon_in
             $table->string('latlon_in');
             // latlon_out

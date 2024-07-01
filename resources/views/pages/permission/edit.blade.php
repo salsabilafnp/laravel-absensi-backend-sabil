@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="form-group col-md-6 col-12">
                                             <label>Phone Number</label>
-                                            <p>{{ $permission->user->phone }}</p>
+                                            <p>{{ $permission->user->phone_number }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -48,13 +48,13 @@
                                         </div>
                                         <div class="form-group col-md-6 col-12">
                                             <label>Permission Type</label>
-                                            <p class="text-capitalize">{{ $permission->type }}</p>
+                                            <p class="text-uppercase">{{ $permission->permit_type }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6 col-12">
                                             <label>Date Permission</label>
-                                            <p>{{ $permission->start_date }} - {{ $permission->end_date}}</p>
+                                            <p>{{ $permission->leave_date }} for {{ $permission->duration}} day(s) </p>
                                         </div>
                                         <div class="form-group col-md-6 col-12">
                                             <label>Reason</label>
@@ -65,8 +65,8 @@
                                         <div class="form-group col-md-6 col-12">
                                             <label>Supporting Document</label>
                                             <p>
-                                                @if ($permission->image)
-                                                    <img src="{{ asset('storage/permissions/' . $permission->image) }}"
+                                                @if ($permission->file_url)
+                                                    <img src="{{ asset('storage/permissions/' . $permission->file_url) }}"
                                                         alt="Supporting Document" style="max-width: 80%; height: auto;">
                                                 @else
                                                     No Document

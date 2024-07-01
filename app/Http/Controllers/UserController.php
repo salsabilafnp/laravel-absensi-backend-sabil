@@ -32,9 +32,9 @@ class UserController extends Controller
         $user= User::create([
             'name'=> $request->name,
             'email'=> $request->email,
-            'phone'=> $request->phone,
+            'phone_number'=> $request->phone_number,
             'role'=> $request->role,
-            'employeeType'=> $request->employeeType,
+            'employee_type'=> $request->employee_type,
             'department'=> $request->department,
             'position'=> $request->position,
             'password'=> Hash::make($request->password),
@@ -58,9 +58,9 @@ class UserController extends Controller
         $user->update([
             'name'=> $request->name,
             'email'=> $request->email,
-            'phone'=> $request->phone,
+            'phone_number'=> $request->phone_number,
             'role'=> $request->role,
-            'employeeType'=> $request->employeeType,
+            'employee_type'=> $request->employee_type,
             'department'=> $request->department,
             'position'=> $request->position,
             // 'company_id' => $request->company_id,

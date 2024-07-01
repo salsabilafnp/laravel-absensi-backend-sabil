@@ -79,22 +79,18 @@
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input type="number" class="form-control" name="phone" value="{{ $user->phone }}">
+                                <input type="text" class="form-control" name="phone_number" value="{{ $user->phone_number }}">
                             </div>
                             <div class="form-group">
                                 <label>Type of Employee</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="employeeType" value="internship" class="selectgroup-input" @if ($user->employeeType == 'internship') checked @endif>
+                                        <input type="radio" name="employee_type" value="internship" class="selectgroup-input" @if ($user->employee_type == 'internship') checked @endif>
                                         <span class="selectgroup-button">Internship</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="employeeType" value="full time" class="selectgroup-input" @if ($user->employeeType == 'full time') checked @endif>
+                                        <input type="radio" name="employee_type" value="full time" class="selectgroup-input" @if ($user->employee_type == 'full time') checked @endif>
                                         <span class="selectgroup-button">Full Time</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="employeeType" value="freelance" class="selectgroup-input" @if ($user->employeeType == 'freelance') checked @endif>
-                                        <span class="selectgroup-button">Freelance</span>
                                     </label>
                                 </div>
                             </div>
@@ -131,11 +127,6 @@
                                         <input type="radio" name="role" value="admin" class="selectgroup-input"
                                             @if ($user->role == 'admin') checked @endif>
                                         <span class="selectgroup-button">Admin</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="role" value="supervisor" class="selectgroup-input"
-                                            @if ($user->role == 'supervisor') checked @endif>
-                                        <span class="selectgroup-button">Supervisor</span>
                                     </label>
                                     <label class="selectgroup-item">
                                         <input type="radio" name="role" value="staff" class="selectgroup-input"

@@ -11,11 +11,11 @@ class Permission extends Model
 
     protected $fillable = [
         'user_id',
-        'type',
-        'start_date',
-        'end_date',
+        'permit_type',
+        'leave_date',
+        'duration',
         'reason',
-        'image',
+        'file_url',
         'status',
     ];
 

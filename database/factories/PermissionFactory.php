@@ -18,11 +18,11 @@ class PermissionFactory extends Factory
     {
         return [
             'user_id' => 11,
-            'type' => $this->faker->randomElement(['annual', 'sick', 'unpaid']),
-            'start_date' => $this->faker->date(),
-            'end_date' => $this->faker->date(),
+            'permit_type' => $this->faker->randomElement(['annual', 'sick', 'wfh']),
+            'leave_date' => $this->faker->date(),
+            'duration' => $this->faker->numberBetween(1, 10),
             'reason' => $this->faker->text(),
-            'image' => $this->faker->imageUrl(),
+            'file_url' => $this->faker->imageUrl(),
             'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
         ];
     }

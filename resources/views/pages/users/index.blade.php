@@ -65,7 +65,7 @@
                                                     {{ $user->email }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->phone }}
+                                                    {{ $user->phone_number }}
                                                 </td>
                                                 <td class="text-capitalize">
                                                     {{ $user->role }}

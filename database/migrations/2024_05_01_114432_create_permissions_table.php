@@ -16,17 +16,17 @@ return new class extends Migration
             // user id`
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             // permission type
-            $table->enum('type', ['annual', 'sick', 'unpaid', 'wfh']);
+            $table->enum('permit_type', ['annual', 'sick', 'wfh'])->default('annual');
             // permission date start
-            $table->date('start_date');
-            // permission date end, null if it's a single day permission
-            $table->date('end_date')->nullable();
+            $table->date('leave_date');
+            // permission duration
+            $table->integer('duration');
             // reason
             $table->text('reason');
-            // image
-            $table->string('image')->nullable();
+            // file
+            $table->string('file_url')->nullable();
             // status
-            $table->enum('status', ['pending', 'approved', 'rejected']);
+            $table->enum('status', ['pending','approved', 'rejected'])->default('pending');
             $table->timestamps();
         });
     }

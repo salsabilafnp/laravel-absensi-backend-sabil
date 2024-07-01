@@ -62,11 +62,11 @@
                                                 <td>
                                                     {{ $permit->user->position }}
                                                 </td>
-                                                <td class="text-capitalize">
-                                                    {{ $permit->type }}
+                                                <td class="text-uppercase">
+                                                    {{ $permit->permit_type }}
                                                 </td>
                                                 <td>
-                                                    {{ $permit->start_date }} - {{ $permit->end_date }}
+                                                    {{ $permit->leave_date }} for {{ $permit->duration }} day(s)
                                                 </td>
                                                 <td class="text-capitalize">
                                                     {{ $permit->status }}

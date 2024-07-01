@@ -64,10 +64,10 @@
                                                     {{ $attendance->date }}
                                                 </td>
                                                 <td>
-                                                    {{ $attendance->time_in }}
+                                                    {{ $attendance->checkIn_time }}
                                                 </td>
                                                 <td>
-                                                    {{ $attendance->time_out }}
+                                                    {{ $attendance->checkOut_time }}
                                                 </td>
                                                 <td>
                                                     {{ $attendance->latlon_in }}
@@ -77,12 +77,14 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('attendances.edit', $attendance->id) }}'
+                                                        {{-- Edit --}}
+                                                        {{-- <a href='{{ route('attendances.edit', $attendance->id) }}'
                                                             class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
-                                                        </a>
+                                                        </a> --}}
 
+                                                        {{-- Delete --}}
                                                         <form action="{{ route('attendances.destroy', $attendance->id) }}"
                                                             method="POST" class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />

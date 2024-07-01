@@ -20,8 +20,8 @@ class AttendanceFactory extends Factory
             'user_id' => 11,
             // 'company_id' => 1,
             'date' => $this->faker->date(),
-            'time_in' => $this->faker->time(),
-            'time_out' => $this->faker->time(),
+            'checkIn_time' => $this->faker->time(),
+            'checkOut_time' => $this->faker->time(),
             'latlon_in' => $this->faker->latitude() . ',' . $this->faker->longitude(),
             'latlon_out' => $this->faker->latitude() . ',' . $this->faker->longitude(),
         ];
