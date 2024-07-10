@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -14,16 +16,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        // dummy data for User
+        User::factory()->count(8)->create();
 
-        User::factory()->create([
-            'name' => 'Sabil',
-            'email' => 'sabil@gmail.com',
+        DB::table('users')->insert([
+            'name' => 'John Doe',
+            'email' => 'johnD@gmail.com',
             'password' => Hash::make('secret'),
+            'department' => 'IT Production',
+            'position' => 'Mobile Developer',
+            'role' => 'staff',
+        ]);
+        
+        DB::table('users')->insert([
+            'name' => 'Jane Doe',
+            'email' => 'janedoe@gmail.com',
+            'password' => Hash::make('secret'),
+            'department' => 'HRD',
+            'position' => 'Admin Personalia',
+            'role' => 'admin',
         ]);
 
         // Dummy data for company
-        \App\Models\Company::create([
+        Company::create([
             'name' => 'PT. Sabil',
             'email' => 'info@sabilsolution.id',
             'address' => 'Jl. Raya Ciputat Parung No. 1',
