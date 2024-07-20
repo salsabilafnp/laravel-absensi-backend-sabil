@@ -6,6 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 
+/**
+ * @OA\Tag(
+ *     name="permission",
+ *     description=""
+ * )
+ */
 class PermissionController extends Controller
 {
     // index

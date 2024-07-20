@@ -1,0 +1,261 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API documentation Presence",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/attendances": {
+            "get": {
+                "tags": [
+                    "attendance"
+                ],
+                "summary": "Get a list of attendances",
+                "operationId": "f7564e4f8fdec50c27cf2a372050327d",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Filter by user name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/attendances/{id}": {
+            "delete": {
+                "tags": [
+                    "attendance"
+                ],
+                "summary": "Delete an attendance record",
+                "operationId": "3b1350863e6c4643d660bad18a27d91e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the attendance record to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Attendance deleted successfully"
+                    },
+                    "404": {
+                        "description": "Attendance not found"
+                    }
+                }
+            }
+        },
+        "/api/companies": {
+            "get": {
+                "tags": [
+                    "company"
+                ],
+                "summary": "List all companies",
+                "operationId": "54f966c056050f9db4fff6ee5a45a76a",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Filter companies by name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "company"
+                ],
+                "summary": "Create a new company",
+                "operationId": "00e2db7b0f71c32b377f4dfc4dd685a8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Name of the company",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email of the company",
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "address": {
+                                        "description": "Address of the company",
+                                        "type": "string"
+                                    },
+                                    "latitude": {
+                                        "description": "Latitude of the company's location",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "longitude": {
+                                        "description": "Longitude of the company's location",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "radius_km": {
+                                        "description": "Radius in kilometers around the company's location",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "time_in": {
+                                        "description": "Time when the company opens",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "time_out": {
+                                        "description": "Time when the company closes",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Company created successfully"
+                    }
+                }
+            }
+        },
+        "/api/companies/{id}": {
+            "put": {
+                "tags": [
+                    "company"
+                ],
+                "summary": "Update a company",
+                "operationId": "6a1d7a4a2b9cbdfe7749cef78e6cec57",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Name of the company",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email of the company",
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "address": {
+                                        "description": "Address of the company",
+                                        "type": "string"
+                                    },
+                                    "latitude": {
+                                        "description": "Latitude of the company's location",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "longitude": {
+                                        "description": "Longitude of the company's location",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "radius_km": {
+                                        "description": "Radius in kilometers around the company's location",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "time_in": {
+                                        "description": "Time when the company opens",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "time_out": {
+                                        "description": "Time when the company closes",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Company updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "company"
+                ],
+                "summary": "Delete a company",
+                "operationId": "49d767f608bffc95ad39368bf1766693",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Company deleted successfully"
+                    },
+                    "404": {
+                        "description": "Company not found"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "attendance",
+            "description": "attendance"
+        },
+        {
+            "name": "company",
+            "description": "company"
+        }
+    ]
+}

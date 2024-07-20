@@ -7,6 +7,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @OA\Tag(
+ *     name="User",
+ *     description=""
+ * )
+ */
 class UserController extends Controller
 {
     public function index(){
