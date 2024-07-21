@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "generate:swagger": "php artisan l5-swagger:generate"
     },
     "devDependencies": {
         "axios": "^1.6.4",
