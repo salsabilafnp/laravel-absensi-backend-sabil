@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\User;
 
 class AttendanceController extends Controller
 {
@@ -39,6 +39,8 @@ class AttendanceController extends Controller
         $attendance->latlon_in = $request->latitude . "," . $request->longitude;
         $attendance->save();
 
+        $attendance->load('user'); // Load user relationship
+
         return response()->json([
             'message' => 'Check in successfully',
             'attendance' => $attendance,
@@ -70,6 +72,8 @@ class AttendanceController extends Controller
             $attendance->latlon_out = $request->latitude . "," . $request->longitude;
             $attendance->save();
 
+            $attendance->load('user'); // Load user relationship
+
             return response()->json([
                 'message' => 'Check out successfully',
                 'attendance' => $attendance,
@@ -80,7 +84,7 @@ class AttendanceController extends Controller
     // show detail attendance
     public function show($id)
     {
-        $attendance = Attendance::find($id);
+        $attendance = Attendance::with('user')->find($id);
 
         if (!$attendance) {
             return response()->json([
@@ -94,7 +98,8 @@ class AttendanceController extends Controller
     // history for an user
     public function history()
     {
-        $attendances = Attendance::where('user_id', auth()->user()->id)
+        $attendances = Attendance::with('user')
+            ->where('user_id', auth()->user()->id)
             ->orderBy('date', 'desc')
             ->take(14)
             ->get();
@@ -105,9 +110,12 @@ class AttendanceController extends Controller
     // attendances history from all users
     public function allHistory()
     {
-        $attendances = Attendance::orderBy('date', 'desc')->take(20)->get();
+        $attendances = Attendance::with('user')
+            ->orderBy('date', 'desc')
+            ->take(20)
+            ->get();
 
-        if($attendances->isEmpty()){
+        if ($attendances->isEmpty()) {
             return response()->json(['message' => 'No records'], 404);
         }
 
@@ -117,7 +125,8 @@ class AttendanceController extends Controller
     // today attendance
     public function today()
     {
-        $attendance = Attendance::where('user_id', auth()->user()->id)
+        $attendance = Attendance::with('user')
+            ->where('user_id', auth()->user()->id)
             ->where('date', date('Y-m-d'))
             ->first();
 
@@ -127,7 +136,7 @@ class AttendanceController extends Controller
     // filter: by user_id or month or year
     public function filter(Request $request)
     {
-        $query = Attendance::query();
+        $query = Attendance::with('user');
 
         if ($request->has('user_id')) {
             $query->where('user_id', $request->user()->id);

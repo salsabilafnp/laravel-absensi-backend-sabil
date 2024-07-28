@@ -45,8 +45,8 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 // Recap
-Route::get('/recap/staff', [RecapController::class, 'staffRecap'])->middleware('auth:sanctum');
-Route::get('/recap/admin', [RecapController::class, 'adminRecap'])->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->group(function(){Route::get('/recap/staff', [RecapController::class, 'staffRecap']);
+Route::get('/recap/admin', [RecapController::class, 'adminRecap']);});
 
 // notes
 Route::apiResource('/note', NoteController::class)->middleware('auth:sanctum');

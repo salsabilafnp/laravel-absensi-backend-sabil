@@ -1,17 +1,22 @@
 <?php
-
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecapController extends Controller
 {
     // Recap for Staff
     public function staffRecap(Request $request)
     {
+        // Pastikan user sudah login
+        if (!Auth::check()) {
+            return response()->json(['message' => 'User not authenticated'], 401);
+        }
+
         $user_id = $request->user()->id;
         $year = date('Y');
 
@@ -20,10 +25,9 @@ class RecapController extends Controller
             ->whereYear('date', $year)
             ->count();
 
-        // Total Cuti, Sakit, WFH
+        // Total Permission
         $totalLeave = Permission::where('user_id', $user_id)
             ->whereYear('leave_date', $year)
-            ->whereIn('permit_type', ['annual', 'sick', 'wfh'])
             ->count();
 
         // Total Cuti
@@ -53,21 +57,20 @@ class RecapController extends Controller
         ]);
     }
 
-    // recap for dashboard admin
+    // Recap for Admin Dashboard
     public function adminRecap(Request $request)
     {
-        $startDate = $request->input('start_date', date('Y-m-d'));
-        $endDate = $request->input('end_date', date('Y-m-d'));
+        $today = date('Y-m-d');
 
-        // Total Kehadiran dalam periode tertentu
-        $totalAttendance = Attendance::whereBetween('date', [$startDate, $endDate])
+        // Total Kehadiran hari ini
+        $totalAttendance = Attendance::where('date', $today)
             ->count();
 
-        // Total Ajuan Cuti dalam periode tertentu
-        $totalPermissions = Permission::whereBetween('leave_date', [$startDate, $endDate])
+        // Total Permission hari ini
+        $totalPermissions = Permission::where('leave_date', $today)
             ->count();
 
-        // Total Ajuan Cuti berdasarkan status
+        // Total Permission berdasarkan status ajuan dari seluruh ajuan
         $totalPending = Permission::where('status', 'pending')
             ->count();
 

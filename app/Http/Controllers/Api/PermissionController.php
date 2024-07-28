@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -12,7 +11,8 @@ class PermissionController extends Controller
     // index (history for user API)
     public function index()
     {
-        $permissions = Permission::where('user_id', auth()->user()->id)
+        $permissions = Permission::with('user')
+            ->where('user_id', auth()->user()->id)
             ->orderBy('leave_date', 'desc')
             ->take(14)
             ->get();
@@ -27,7 +27,7 @@ class PermissionController extends Controller
     // history all permissions
     public function allHistory()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::with('user')->get();
 
         if ($permissions->isEmpty()) {
             return response()->json(['message' => 'No records'], 404);
@@ -62,7 +62,9 @@ class PermissionController extends Controller
 
         $permission->save();
 
-        return response()->json(['message' => 'Permission created successfully'], 201);
+        $permission->load('user');
+
+        return response()->json(['message' => 'Permission created successfully', 'permission' => $permission], 201);
     }
 
     // update (update API)
@@ -94,7 +96,9 @@ class PermissionController extends Controller
 
         $permission->save();
 
-        return response()->json(['message' => 'Permission updated successfully'], 200);
+        $permission->load('user');
+
+        return response()->json(['message' => 'Permission updated successfully', 'permission' => $permission], 200);
     }
 
     // destroy (delete API)
@@ -114,7 +118,7 @@ class PermissionController extends Controller
     // show (read detail API)
     public function show($id)
     {
-        $permission = Permission::find($id);
+        $permission = Permission::with('user')->find($id);
 
         if ($permission->user_id != auth()->user()->id) {
             return response()->json(['message' => 'Permission not found'], 404);
@@ -134,18 +138,20 @@ class PermissionController extends Controller
 
         Log::info('Check permission id: ' . $id);
 
-        $permissions = Permission::find($id);
-        $permissions->update([
+        $permission = Permission::find($id);
+        $permission->update([
             'status' => $request->status,
         ]);
 
-        return response()->json($permissions, 201);
+        $permission->load('user');
+
+        return response()->json($permission, 201);
     }
 
     // filter (filter API)
     public function filter(Request $request)
     {
-        $query = Permission::query();
+        $query = Permission::with('user');
 
         if ($request->has('user_id')) {
             $query->where('user_id', $request->user_id);
@@ -159,8 +165,8 @@ class PermissionController extends Controller
             $query->whereYear('created_at', $request->year);
         }
 
-        $permissionss = $query->get();
+        $permissions = $query->get();
 
-        return response()->json($permissionss);
+        return response()->json($permissions);
     }
 }
