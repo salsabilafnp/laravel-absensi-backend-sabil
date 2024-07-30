@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class PermissionController extends Controller
 {
@@ -44,6 +45,7 @@ class PermissionController extends Controller
             'leave_date' => 'required',
             'duration' => 'required',
             'reason' => 'required',
+            'file_url' => 'nullable|file|mimes:jpg,png,pdf,doc,docx|max:2048',
         ]);
 
         $permission = new Permission();
@@ -56,8 +58,8 @@ class PermissionController extends Controller
 
         if ($request->hasFile('file_url')) {
             $file_url = $request->file('file_url');
-            $file_url->storeAs('public/permissions', $file_url->hashName());
-            $permission->file_url = $file_url->hashName();
+            $path = $file_url->storeAs('public/permissions', $file_url->hashName());
+            $permission->file_url = basename($path);
         }
 
         $permission->save();
@@ -89,13 +91,17 @@ class PermissionController extends Controller
         $permission->reason = $request->reason;
 
         if ($request->hasFile('file_url')) {
+            // Hapus file lama jika ada
+            if ($permission->file_url) {
+                Storage::delete('public/permissions/' . $permission->file_url);
+            }
+        
             $file_url = $request->file('file_url');
-            $file_url->storeAs('public/permissions', $file_url->hashName());
-            $permission->file_url = $file_url->hashName();
+            $path = $file_url->storeAs('public/permissions', $file_url->hashName());
+            $permission->file_url = basename($path);
         }
 
         $permission->save();
-
         $permission->load('user');
 
         return response()->json(['message' => 'Permission updated successfully', 'permission' => $permission], 200);
@@ -120,8 +126,10 @@ class PermissionController extends Controller
     {
         $permission = Permission::with('user')->find($id);
 
-        if ($permission->user_id != auth()->user()->id) {
-            return response()->json(['message' => 'Permission not found'], 404);
+        if (!$permission) {
+            return response()->json([
+                'message' => 'Permission not found.',
+            ], 404);
         }
 
         return response()->json(['permission' => $permission], 200);

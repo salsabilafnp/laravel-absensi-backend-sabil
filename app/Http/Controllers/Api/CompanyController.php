@@ -9,31 +9,21 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    // show
-    public function show()
+    // index
+    public function index()
     {
-        $company = Company::find(1);
-        return response(['company' => $company], 200);
+        $companies = Company::all();
+        return response(['companies' => $companies], 200);
     }
 
-    // public function show(Request $request)
-    // {
-
-    //     // User tidak terkait dengan perusahaan
-    //     $company = $request->user->company;
-
-    //     // Format data perusahaan
-    //     $formattedCompany = [
-    //         'id' => $company->id,
-    //         'name' => $company->name,
-    //         'address' => $company->address,
-    //         'latitude' => $company->latitude,
-    //         'longitude' => $company->longitude,
-    //         'radius_km' => $company->radius_km,
-    //         'time_in' => $company->time_in,
-    //         'time_out' => $company->time_out,
-    //     ];
-
-    //     return response()->json($formattedCompany);
-    // }
+    // show by id
+    public function show($id)
+    {
+        $company = Company::find($id);
+        if ($company) {
+            return response(['message' => 'Company found', 'company' => $company], 200);
+        } else {
+            return response(['message' => 'Company not found'], 404);
+        }
+    }
 }

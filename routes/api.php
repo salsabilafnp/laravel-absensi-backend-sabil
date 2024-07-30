@@ -24,6 +24,7 @@ Route::post('/update-profile', [AuthController::class, 'updateProfile'])->middle
 // companies
 // index
 Route::get('/company', [CompanyController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/company/{id}', [CompanyController::class, 'show'])->middleware('auth:sanctum');
 
 // attendances
 Route::middleware('auth:sanctum')->group(function () {
